@@ -1,0 +1,250 @@
+@import "_variables";
+
+// Global styles
+
+* {
+  font-family: $font-family;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  height: 100vh;
+  background-color: $screen-background;
+}
+
+// Fields on Screen 1 and Screen 2
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: $fields-width;
+  height: 100vh;
+  margin: 0 auto;
+  color: $font-color;
+
+  // Headings
+  h1,
+  h2,
+  h3 {
+    width: $heading-width;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+
+.login-form {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .input-container {
+    position: relative;
+    width: 100%;
+    max-width: $fields-width;
+    margin-bottom: 1rem;
+
+    .text-input-field {
+      background: transparent;
+      width: 100%;
+      max-width: $fields-width;
+      color: $font-color;
+      font-size: $base-font-size;
+      border: 1px solid $input-border-color;
+      border-radius: 0.5rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+      padding: 0.75rem 0.5rem;
+      position: relative;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .error-message {
+      font-size: 0.875rem;
+      color: $error;
+      margin-top: 0.25rem;
+    }
+
+    .password-toggle {
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      transform: translateY(-50%);
+      outline: none;
+      border: none;
+      background: transparent;
+    }
+  }
+}
+
+.login-button,
+.save-button {
+  width: $button-width;
+  background-color: $button-background;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  border: none;
+  outline: none;
+  color: $font-color;
+  font-weight: 600;
+  font-size: $base-font-size;
+  text-align: center;
+  margin: 1.5rem 0rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $button-background;
+  }
+
+  &:active {
+    border: 1px solid $button-hover-border;
+  }
+}
+
+// Graph container
+.graph-container {
+  width: $graph-container-width;
+}
+
+// Other elements
+.other-elements {
+  max-width: $other-elements-max-width;
+}
+
+// Greyed out fields
+.greyed-radio-button {
+  background-color: $greyed-radio-background;
+}
+
+.greyed-input-field {
+  border-color: $greyed-input-border;
+  color: $greyed-input-value;
+}
+
+// Page not found
+.page-not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: $primary-color;
+  }
+
+  p {
+    font-size: 1.2em;
+    color: $secondary-color;
+    text-align: center;
+  }
+}
+
+.navigation-link {
+  color: $font-color;
+}
+
+.admin-form {
+  width: 100%;
+}
+
+.admin-input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 48%);
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0px;
+
+  .number-input-container {
+    .request-amount-input {
+      background: transparent;
+      border: 1px solid $greyed-input-border;
+      color: $greyed-input-value;
+      border-radius: 0.75rem;
+      padding: 0.75rem;
+      width: 100%;
+      text-align: center;
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      -moz-appearance: textfield;
+
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+  }
+
+  .amount-box-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 22%);
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.error-message {
+  color: $error;
+  font-size: 12px;
+  margin-top: 0.25rem;
+}
+
+.RadioGroupRoot {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  justify-content: center;
+
+  .RadioGroupItem {
+    background-color: $font-color;
+    width: 21px;
+    height: 21px;
+    border-radius: 100%;
+  }
+}
+
+.RadioGroupContainer {
+  display: flex;
+  align-items: center;
+}
+
+.RadioGroupIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background-color: $selected-radio-color;
+  }
+}
+
+.Label {
+  color: $font-color;
+  font-size: 15px;
+  line-height: 1;
+  padding-left: 15px;
+}

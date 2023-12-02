@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+// Font Sizes
+$heading-font-size: 32px;
+$base-font-size: 16px;
+
+// Font Family
+$font-family: "Poppins", sans-serif;
+
+// Colors
+$screen-background: #030303;
+$font-color: #ffffff;
+$radio-background-color: #ffffff;
+$selected-radio-color: #6741d9;
+$input-border-color: #ffffff;
+$graph-bars-color: #f0c3f1;
+$bar-axis-color: #ffffff;
+
+$primary-color: #3498db;
+$secondary-color: #555;
+
+$error: #e53e3e;
+
+// Save Button Styles
+$button-background: #6741d9;
+$button-hover-border: 1px solid #f0c3f1;
+$button-click-border: 1px solid #f0c3f1;
+
+// Widths
+$heading-width: 600px;
+$fields-width: 600px;
+$button-width: 600px;
+$graph-container-width: 600px;
+$other-elements-max-width: 300px;
+
+// Colors for Greyed Out Fields
+$greyed-radio-background: #c2c2c2;
+$greyed-input-border: #c2c2c2;
+$greyed-input-value: #c2c2c2;
