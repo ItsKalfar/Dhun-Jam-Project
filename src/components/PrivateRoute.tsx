@@ -5,7 +5,7 @@ import { useGlobalContext } from "../context/GlobalContext";
 const PrivateRoute: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { token, user } = useGlobalContext();
 
-  if (!token || !user?.id) return <Navigate to={"/login"} replace />;
+  if (!token || !user?.id) return <Navigate to={"/signin"} replace />;
 
   return children;
 };

@@ -7,7 +7,7 @@ import { Input, PasswordInput } from "../components/Input";
 import { useGlobalContext } from "../context/GlobalContext";
 
 const LoginPage: React.FC = () => {
-  const { login } = useGlobalContext();
+  const { signin } = useGlobalContext();
 
   const formSchema = z.object({
     username: z
@@ -38,7 +38,7 @@ const LoginPage: React.FC = () => {
 
   const onSubmit: SubmitHandler<ValidationSchema> = (data: any) => {
     try {
-      login(data);
+      signin(data);
     } catch (error) {
       console.error("Validation error:", error);
     }
@@ -48,7 +48,7 @@ const LoginPage: React.FC = () => {
     <main>
       <section className="container">
         <h1 className="page-heading">Venue Admin Login</h1>
-        <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
+        <form className="signin-form" onSubmit={handleSubmit(onSubmit)}>
           <Input
             id="Username"
             type="text"
@@ -62,7 +62,7 @@ const LoginPage: React.FC = () => {
             {...register("password")}
             error={errors.password && errors.password.message}
           />
-          <button className="login-button" type="submit">
+          <button className="signin-button" type="submit">
             Sign in
           </button>
         </form>

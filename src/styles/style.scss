@@ -10,7 +10,8 @@
 }
 
 main {
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   background-color: $screen-background;
 }
 
@@ -22,7 +23,8 @@ main {
   justify-content: center;
   width: 100%;
   max-width: $fields-width;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   margin: 0 auto;
   color: $font-color;
 
@@ -31,12 +33,34 @@ main {
   h2,
   h3 {
     width: $heading-width;
-    margin-bottom: 20px;
+
+    margin: 1.5rem 0rem;
     text-align: center;
   }
 }
 
-.login-form {
+.loading-styles {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1a202c;
+}
+
+.graph {
+  position: relative;
+  .rs-icon {
+    position: absolute;
+    top: 1.5rem;
+    scale: 2;
+  }
+  .graph-container {
+    margin: 3rem 0rem;
+  }
+}
+
+.signin-form {
   width: 100%;
 
   display: flex;
@@ -86,7 +110,7 @@ main {
   }
 }
 
-.login-button,
+.signin-button,
 .save-button {
   width: $button-width;
   background-color: $button-background;
@@ -102,32 +126,19 @@ main {
   cursor: pointer;
 
   &:hover {
+    border: 1px solid $button-hover-border;
     background-color: $button-background;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: $greyed-radio-background;
   }
 
   &:active {
     border: 1px solid $button-hover-border;
   }
-}
-
-// Graph container
-.graph-container {
-  width: $graph-container-width;
-}
-
-// Other elements
-.other-elements {
-  max-width: $other-elements-max-width;
-}
-
-// Greyed out fields
-.greyed-radio-button {
-  background-color: $greyed-radio-background;
-}
-
-.greyed-input-field {
-  border-color: $greyed-input-border;
-  color: $greyed-input-value;
 }
 
 // Page not found

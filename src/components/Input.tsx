@@ -17,6 +17,22 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   }
 );
 
+export const NumberInput: FC<InputProps> = forwardRef<
+  HTMLInputElement,
+  InputProps
+>(({ ...props }, ref) => {
+  return (
+    <div className="number-input-container">
+      <input
+        type={"number"}
+        className="request-amount-input"
+        ref={ref}
+        {...props}
+      />
+    </div>
+  );
+});
+
 export const PasswordInput: FC<InputProps> = forwardRef<
   HTMLInputElement,
   InputProps

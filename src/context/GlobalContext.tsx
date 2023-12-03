@@ -23,7 +23,7 @@ export const GlobalContextProvider: FC<{ children: ReactNode }> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [token, setToken] = useState<string | null>(null);
-  const [user, setUser] = useState<IAdmin | null>(null);
+  const [user, setUser] = useState(null);
 
   const navigate = useNavigate();
 
@@ -45,6 +45,7 @@ export const GlobalContextProvider: FC<{ children: ReactNode }> = ({
 
   const getAdminDetails = async (adminId: number) => {
     try {
+      setIsLoading(true);
       const response = await apiClient.get(`/account/admin/${adminId}`);
       if (response) {
         const { data } = response;
@@ -62,11 +63,12 @@ export const GlobalContextProvider: FC<{ children: ReactNode }> = ({
     }
   };
 
-  const login = async (loginCredentials: ILoginCredentialsRequest) => {
+  const signin = async (signinCredentials: ILoginCredentialsRequest) => {
     try {
+      setIsLoading(true);
       const response = await apiClient.post(
-        "/account/admin/login",
-        loginCredentials
+        "/account/admin/signin",
+        signinCredentials
       );
       if (response) {
         const { id, token } = response.data.data;
@@ -75,7 +77,6 @@ export const GlobalContextProvider: FC<{ children: ReactNode }> = ({
           setToken(token);
           LocalStorage.set("token", token);
           getAdminDetails(id);
-
           navigate(`/admin/${id}`);
         } else {
           toast.error(response.data.ui_err_msg);
@@ -84,7 +85,7 @@ export const GlobalContextProvider: FC<{ children: ReactNode }> = ({
     } catch (error: any) {
       if ([401, 403].includes(error?.response.data?.statusCode)) {
         localStorage.clear();
-        if (isBrowser) window.location.href = "/login";
+        if (isBrowser) window.location.href = "/signin";
       }
       console.error(error?.response.data?.message || "Something went wrong");
     } finally {
@@ -92,17 +93,18 @@ export const GlobalContextProvider: FC<{ children: ReactNode }> = ({
     }
   };
 
-  const updatePrice = async (data: IUpdateAmountRequest) => {
+  const updatePrice = async (id: number, amount: IAmountType) => {
     try {
-      const { id, amount } = data;
+      setIsLoading(true);
       const response: IAmountResponse = await apiClient.put(
         `/account/admin/${id}`,
         amount
       );
       if (response) {
-        const { data, ui_err_msg, status } = response;
+        const { ui_err_msg, status } = response;
         if (status === 200) {
-          console.log(data);
+          toast.success("Amount Updated Successfully");
+          getAdminDetails(id);
         } else {
           toast.error(ui_err_msg);
         }
@@ -110,7 +112,7 @@ export const GlobalContextProvider: FC<{ children: ReactNode }> = ({
     } catch (error: any) {
       if ([401, 403].includes(error?.response.data?.statusCode)) {
         localStorage.clear();
-        if (isBrowser) window.location.href = "/login";
+        if (isBrowser) window.location.href = "/signin";
       }
       toast.error(error?.response.data?.message || "Something went wrong");
     } finally {
@@ -128,10 +130,10 @@ export const GlobalContextProvider: FC<{ children: ReactNode }> = ({
       setUser(_user);
     }
     setIsLoading(false);
-  }, []);
+  }, [isLoading]);
 
   return (
-    <GlobalContext.Provider value={{ user, login, token, updatePrice }}>
+    <GlobalContext.Provider value={{ user, signin, token, updatePrice }}>
       {isLoading ? <Loading /> : children}
     </GlobalContext.Provider>
   );

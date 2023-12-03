@@ -17,7 +17,7 @@ function App() {
           token && user?.id ? (
             <Navigate to={`/admin/${user.id}`} />
           ) : (
-            <Navigate to="/login" />
+            <Navigate to="/signin" />
           )
         }
       />
@@ -31,7 +31,7 @@ function App() {
         }
       />
       <Route
-        path="/login"
+        path="/signin"
         element={
           <PublicRoute>
             <LoginPage />
