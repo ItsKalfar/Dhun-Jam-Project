@@ -25,7 +25,7 @@ const LoginPage: React.FC = () => {
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<ValidationSchema>({
     resolver: yupResolver(formSchema),
     defaultValues: {
@@ -60,7 +60,7 @@ const LoginPage: React.FC = () => {
             {...register("password")}
             error={errors.password && errors.password.message}
           />
-          <button className="signin-button" type="submit">
+          <button className="signin-button" type="submit" disabled={!isValid}>
             Sign in
           </button>
         </form>
