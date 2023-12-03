@@ -1,35 +1,33 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Link } from "react-router-dom";
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Input, PasswordInput } from "../components/Input";
 import { useGlobalContext } from "../context/GlobalContext";
 
 const LoginPage: React.FC = () => {
   const { signin } = useGlobalContext();
 
-  const formSchema = z.object({
-    username: z
-      .string()
-      .min(3, {
-        message: "Name must be at least 3 characters.",
-      })
-      .max(25, { message: "Name cannot be more than 25 characters" }),
+  const formSchema = Yup.object({
+    username: Yup.string()
+      .min(3, "Username must be at least 3 characters.")
+      .max(25, "Username cannot be more than 25 characters"),
 
-    password: z
-      .string()
-      .min(6, { message: "Password should contain atleast 6 characters" }),
+    password: Yup.string().min(
+      6,
+      "Password should contain at least 6 characters"
+    ),
   });
 
-  type ValidationSchema = z.infer<typeof formSchema>;
+  type ValidationSchema = Yup.InferType<typeof formSchema>;
 
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm<ValidationSchema>({
-    resolver: zodResolver(formSchema),
+    resolver: yupResolver(formSchema),
     defaultValues: {
       username: "",
       password: "",
