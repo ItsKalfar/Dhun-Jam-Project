@@ -56,6 +56,7 @@ export const GlobalContextProvider: FC<{ children: ReactNode }> = ({
           toast.error(response.data.ui_err_msg);
         }
       }
+      setIsLoading(false);
     } catch (error: any) {
       console.error(error?.response.data?.message || "Something went wrong");
     } finally {
@@ -82,6 +83,7 @@ export const GlobalContextProvider: FC<{ children: ReactNode }> = ({
           toast.error(response.data.ui_err_msg);
         }
       }
+      setIsLoading(false);
     } catch (error: any) {
       if ([401, 403].includes(error?.response.data?.statusCode)) {
         localStorage.clear();
@@ -96,19 +98,17 @@ export const GlobalContextProvider: FC<{ children: ReactNode }> = ({
   const updatePrice = async (id: number, amount: IAmountType) => {
     try {
       setIsLoading(true);
-      const response: IAmountResponse = await apiClient.put(
-        `/account/admin/${id}`,
-        amount
-      );
+      const response = await apiClient.put(`/account/admin/${id}`, amount);
       if (response) {
-        const { ui_err_msg, status } = response;
+        const { status, data } = response;
         if (status === 200) {
-          toast.success("Amount Updated Successfully");
           getAdminDetails(id);
+          toast.success("Amount Updated Successfully");
         } else {
-          toast.error(ui_err_msg);
+          toast.error(data.ui_err_msg);
         }
       }
+      setIsLoading(false);
     } catch (error: any) {
       if ([401, 403].includes(error?.response.data?.statusCode)) {
         localStorage.clear();

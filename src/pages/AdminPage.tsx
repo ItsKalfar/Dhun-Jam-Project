@@ -10,7 +10,8 @@ import { MdCurrencyRupee } from "react-icons/md";
 
 const AdminPage: React.FC = () => {
   const { user, updatePrice } = useGlobalContext();
-  const { amount, charge_customers, id } = user;
+  const { charge_customers, id, amount } = user;
+
   const { category_6, category_7, category_8, category_9, category_10 } =
     amount;
 
