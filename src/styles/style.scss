@@ -33,7 +33,6 @@ main {
   h2,
   h3 {
     width: $heading-width;
-
     margin: 1.5rem 0rem;
     text-align: center;
   }
@@ -62,7 +61,6 @@ main {
 
 .signin-form {
   width: 100%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -81,7 +79,7 @@ main {
       color: $font-color;
       font-size: $base-font-size;
       border: 1px solid $input-border-color;
-      border-radius: 0.5rem;
+      border-radius: 0.75rem;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
       padding: 0.75rem 0.5rem;
@@ -115,7 +113,7 @@ main {
   width: $button-width;
   background-color: $button-background;
   padding: 0.75rem;
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   border: none;
   outline: none;
   color: $font-color;
