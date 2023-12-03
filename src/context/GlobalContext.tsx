@@ -68,7 +68,7 @@ export const GlobalContextProvider: FC<{ children: ReactNode }> = ({
     try {
       setIsLoading(true);
       const response = await apiClient.post(
-        "/account/admin/signin",
+        "/account/admin/login",
         signinCredentials
       );
       if (response) {
